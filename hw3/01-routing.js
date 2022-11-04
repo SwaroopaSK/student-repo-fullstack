@@ -44,6 +44,60 @@ const server = http.createServer((req, res) => {
   }
 
   // Add your code here
+
+  else if (req.url === `/welcome`) {
+    res.writeHead(200, {'Content-Type': `text/html`});
+    res.write(`<h1> Welcome to full stack course </h1>`);
+    res.end();
+  }
+
+
+  else if (req.url === `/redirect`) {
+    res.writeHead(302, {'Content-Type': `text/html`});
+    res.write(`<h1> Redirected </h1>`);
+    res.end();
+  }
+
+
+  else if (req.url === `/cache`) {
+    res.writeHead(200, {
+      'Content-Type': `html`,
+      'Cache-Control': `max-age=86400`
+    });
+    res.write(`this resource was cached`);
+    
+    res.end();
+  }
+
+
+  else if (req.url === `/cookie`) {
+    res.writeHead(200, {
+      'Content-Type': `text`,
+      'Set-Cookie': `hello=world`
+    });
+    res.write(`cookies… yummm`);
+    res.end();
+  }
+
+
+  else if (req.url === `/check-cookies`) {
+
+    res.writeHead(200, {'Content-Type': `text/plain`});
+	let checkCookie = `no`;
+
+    req.headers.cookie.split(`; `).forEach(cookie => {
+       return (cookie.split(`=`)[0] === `hello`) ? checkCookie = `yes` : 'no'; 
+    });
+
+    res.write(`${checkCookie}`);
+    res.end();
+  }
+
+  else {
+    res.writeHead(404, {'Content-Type': `text/html`});
+    res.write(`<h1>404 - page not found</h1>`);
+    res.end();
+  }
 });
 
 server.listen(port, () => {

@@ -1,6 +1,5 @@
-const http = require('http');
-
-const port = process.env.PORT || 5000;
+const http = require(`http`);
+const port = process.env.PORT || 5001;
 
 const server = http.createServer((req, res) => {
   const routes = [
@@ -31,12 +30,16 @@ const server = http.createServer((req, res) => {
 
     res.write(`<ul> ${routeResults} </ul>`);
   }
-
   // Add your code here
+    res.write(`<table border="2">`);
+    url.searchParams.forEach((value, key) => {
+  
+      res.write(`<tr><td> ${key} </td><td> ${value} </td></tr>`);
 
-  res.end();
-});
-
+    });
+    res.write(`</table>`);
+    res.end();
+  });
 server.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
