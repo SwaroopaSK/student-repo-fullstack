@@ -28,6 +28,7 @@ let getRoutes = () => {
     (elem) => (result += `<li><a href="/${elem}">${elem}</a></li>`)
   );
 
+  
   return result;
 };
 
