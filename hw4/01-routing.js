@@ -28,7 +28,6 @@ let getRoutes = () => {
     (elem) => (result += `<li><a href="/${elem}">${elem}</a></li>`)
   );
 
-  
   return result;
 };
 
@@ -41,10 +40,49 @@ app.get('/', (req, res) => {
   res.end();
 });
 
-app.get('/welcome', (req, res) => {});
+app.get('/welcome', (req, res) => {
+  // Add your code here
+  res.writeHead(200, {'Content-Type': `text/html`});
+  res.write(`<h1> Welcome to full stack course </h1>`);
+  res.end();
+});
 
-// Add your code here
+app.get('/redirect', (req, res) => {
+  res.redirect(302,'/redirected')
+});
+
+app.get('/redirected', (req, res) => {
+  res.write(`<h1> Redirected </h1>`);
+  res.end();
+});
+
+app.get('/cache', (req, res) => {
+  res.writeHead(200, {
+    'Content-Type': `html`,
+    'Cache-Control': `max-age=86400`
+  });
+  res.write(`<h1> this resource was cached </h1>`);
+  
+  res.end();
+});
+
+app.get('/cookie', (req, res) => {
+  res.writeHead(200, {
+    'Content-Type': `text`,
+    'Set-Cookie': `hello=world`
+  });
+  res.write(`<h1>cookiee . . .yummm</h1>`);
+  res.end();
+});
+
+app.get('/other', (req, res) => {
+  res.writeHead(404, {
+    'Content-Type': `text/html`});
+  res.write(`<h1> 404 Page Not found</h1>`);
+  res.end();
+});
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
+  
 });
