@@ -3,9 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="index.css" />
     <title>Form Exercise</title>
   </head>
-  <body>
-    <!-- Add your code here -->
+  
+  <body class="bg-dark">
+    <div class="container">
+    <div class="bg-light border rounded w-50 mx-auto mt-5 p-3">
+      <h2 align="center" class="mt-2 mb-4">Contact Form</h2>
+        <form action="/submit" method="post">
+          <div class="row">
+              <label for="name">Name</label>
+              <input type="text" id = "name" name="name"  required >
+            </div>
+          <div class="row">
+              <label for="email" >Email address</label>
+              <input type="text" id="email" name="email" required >
+            </div>
+          <div class="row">
+              <label for="Comments" >Comments</label>
+              <textarea id="comments" style="height:200px" id="comments" name = "comments"></textarea>
+          </div>
+          <div class="row">
+          <label><input type="checkbox"  name ="check" id="check" >Sign up for newsletter</label>
+        </div>
+          <div class="row">
+            <input type="submit" value="Submit"> </div>
+            <div class="row">
+              <input type="reset" value="Reset" required>
+          </div>
+      </form>
+      </div>
+    </div>
+  
   </body>
 </html>
